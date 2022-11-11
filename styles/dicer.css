@@ -1,0 +1,20 @@
+.dices img {
+    width: 24%;
+    height: 30%;
+    max-width: 300px;
+    max-height: 300px;
+    margin-right: 10px; /* Отступ справа */
+    margin-bottom: 10px; /* Отступ снизу */
+}
+.dices img:hover {
+    cursor: pointer;
+}
+
+.diceResult {
+    margin-top: 100px;
+    font-size: 50px;
+}
+
+.dices {
+    margin-right: 50px;
+}

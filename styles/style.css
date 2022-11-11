@@ -1,0 +1,160 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Playfair Display", serif;
+  font-size: 62.5%;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100vw;
+  min-width: 100%;
+  height: 100vh;
+  min-height: 100%;
+  position: relative;
+  background: #f7971e; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffd200,
+    #f7971e
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffd200,
+    #f7971e
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.menu_overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  color: #fff;
+  background: #c94b4b;
+  background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);
+  background: linear-gradient(to right, #4b134f, #c94b4b);
+  z-index: 100;
+  transform: translateX(110%);
+  transition: transform 0.5s ease;
+}
+
+.menu_overlay .fas {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 2.5rem;
+  transition: all 0.3s ease;
+}
+.menu_overlay .fas:hover {
+  color: #4b134f;
+  transform: scale(1.1) rotate(180deg);
+}
+
+.menu_overlay ul {
+  height: 100%;
+  width: 100%;
+  list-style: none;
+  padding: 20px;
+  margin-left: 50px;
+  font-size: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.menu_overlay a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.menu_overlay a:hover {
+  color: #c94b4b;
+}
+
+#menuBtn {
+  display: none;
+}
+
+#menuBtn:checked ~ .menu_overlay {
+  transform: translateX(0);
+}
+
+.landing_page {
+  max-height: 100vh;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.fas {
+  font-size: 2rem;
+  color: #222;
+}
+
+.fas:hover {
+  color: #4b134f;
+}
+
+.side_text {
+  height: 10vh;
+  width: 60%;
+  color: #c94b4b;
+  position: absolute;
+  left: 0px;
+  bottom: 20px;
+  text-shadow: 0 0 1px #111;
+  padding: 10px;
+  font-size: 16px;
+  color: #4b134f;
+}
+
+.main_text {
+  color: #c94b4b;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 0 0 1px #111;
+  display: flex;
+  flex-direction: column;
+}
+
+.h2-r,
+.h2-l {
+  font-size: 6rem;
+}
+
+.h2-r {
+  transform: rotate(270deg);
+  margin-left: -100px;
+  z-index: 100;
+}
+
+.h2-l {
+  margin-left: 100px;
+  background-color: #4b134f;
+  padding: 20px;
+  z-index: 0;
+}
+
+@media screen and (max-width: 650px) {
+  .list a {
+    font-size: 2rem;
+  }
+}
+
+#adminPanel {
+  font-size: large;
+}
