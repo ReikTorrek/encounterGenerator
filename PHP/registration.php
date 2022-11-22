@@ -4,18 +4,24 @@ session_start();
 $login = filter_var(trim($_POST['login']), FILTER_SANITIZE_STRING);
 $password = filter_var(trim($_POST['password']), FILTER_SANITIZE_STRING);;
 $password_check = filter_var(trim($_POST['password1']), FILTER_SANITIZE_STRING);;
+var_dump($password);
+echo '<br>';
+var_dump($password_check);
 
 if ($password != $password_check){
     $_SESSION['msgg'] = 'пароли не совпадают';
     header('location: http://localhost/2022/encounterGenerator/pages/registration.php');
+    die();
 }
 if (mb_strlen($login) < 4 || mb_strlen($login) > 90){
     $_SESSION['msgg'] = 'Недопустимая длинна логина';
     header('location: http://localhost/2022/encounterGenerator/pages/registration.php');
+    die();
 }
 elseif (mb_strlen($password) < 5 || mb_strlen($password) > 90){
     $_SESSION['msgg'] = 'Недопустимая длинна пароля (От 9 до 90 символов)';
     header('location: http://localhost/2022/encounterGenerator/pages/registration.php');
+    die();
 }
 
 require_once ('connect.php');
