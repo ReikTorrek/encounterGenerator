@@ -18,3 +18,13 @@
 .dices {
     margin-right: 50px;
 }
+
+.Button{
+    user-select: none;
+    color: rgb(253, 253, 253);
+    display: inline-block;
+    padding: 25px 30px;
+    font-size: 2rem;
+    background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);
+    background: linear-gradient(to right, #4b134f, #c94b4b);
+}
