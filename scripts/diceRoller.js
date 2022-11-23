@@ -15,9 +15,13 @@ $(document).ready(function () {
             result.innerText = "Cleared"
             summ.innerText = "Сумма: "
         } else {
-            diceRes = rollDice(diceId);
-            resultSumm += parseInt(diceRes);
-            resultString += diceId + ": " + diceRes + " "
+            if (diceId === 'dicer') {
+                resultString += ""
+            } else {
+                diceRes = rollDice(diceId);
+                resultSumm += parseInt(diceRes);
+                resultString += diceId + ": " + diceRes + " "
+            }
             /*rollDice(diceId, diceRes).forEach(element => diceRes.push(element))*/
 
             result.innerText = resultString
