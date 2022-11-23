@@ -1,3 +1,8 @@
+<?php
+include '../assets/Component/DiceRenderer.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,14 +19,12 @@
 <body>
 <div id="navBar"></div>
 <div class="dices" id="dicer">
-    <img src="../assets/img/1d2.png" id="1d2" alt="">  
-    <img src="../assets/img/1d4.png" id="1d4" alt="">   
-    <img src="../assets/img/1d6.png" id="1d6" alt="">   
-    <img src="../assets/img/1d8.png" id="1d8" alt="">   
-    <img src="../assets/img/1d10.png" id="1d10" alt=""> 
-    <img src="../assets/img/1d12.png" id="1d12" alt=""> 
-    <img src="../assets/img/1d20.png" id="1d20" alt=""> 
-    <img src="../assets/img/1d100.png" id="1d100" alt="">
+    <?php
+    $diceRenderer = new DiceRenderer();
+    foreach (DICE_TYPES as $dice) {
+        $diceRenderer->renderItem($dice);
+    }
+    ?>
     <button  class="Button" id="clear">Clear</button>   
 </div>
 <div class="diceResult">

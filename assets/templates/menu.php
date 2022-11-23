@@ -20,7 +20,7 @@ if (isset($_SESSION['username'])) {
     </label>
     <ul>
         <li><a href="http://localhost/2022/encounterGenerator/pages/encounterGenerator.html">Генеартор событий</a></li>
-        <li><a href="http://localhost/2022/encounterGenerator/pages/diceRoller.html">Кубомёт</a></li>
+        <li><a href="http://localhost/2022/encounterGenerator/pages/diceRoller.php">Кубомёт</a></li>
         <li><a href="<?=$link;  ?>"><?=$menuName; ?></a></li>
         <li><a href="http://localhost/2022/encounterGenerator/index.html">Домой</a></li>
     </ul>
