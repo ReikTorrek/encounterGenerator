@@ -1,5 +1,5 @@
 <?php
-include '../assets/Component/DiceRenderer.php';
+include '../assets/Component/Renderer/DiceRenderer.php';
 
 ?>
 

@@ -11,7 +11,8 @@ $(document).ready(function () {
             'AC' : $('input#AC').val(),
             'armor' : $('input#armor').val(),
             'actions' : $('input#actions').val(),
-            'defenceActions' : $('input#defenceActions').val()
+            'defenceActions' : $('input#defenceActions').val(),
+            'ability' : $('select#ability').val()
     }
         console.log(JSON.stringify(data));
         $.ajax({

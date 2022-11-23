@@ -8,5 +8,6 @@
     <orderEntry type="library" name="includer" level="application" />
     <orderEntry type="library" name="style" level="application" />
     <orderEntry type="library" name="a7e9f794eb" level="application" />
+    <orderEntry type="library" name="select2" level="application" />
   </component>
 </module>

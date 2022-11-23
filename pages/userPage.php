@@ -1,8 +1,10 @@
 <?php
-include '../assets/Component/EncounterRenderer.php';
+include '../assets/Component/Renderer/EncounterRenderer.php';
+include '../assets/Component/DB/DBSelect.php';
 require_once '../PHP/connect.php';
 session_start();
 $renderer = new EncounterRenderer();
+$DBSelect = new DBSelect();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +16,8 @@ $renderer = new EncounterRenderer();
     <script src="../scripts/dataSender.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -32,12 +36,23 @@ $renderer = new EncounterRenderer();
                 $renderer->renderItem($row['Field'], 'text');
         }
     }
+
     ?>
     <div class="encounterCreatorInput" id="mods">
         <p>Введите модификаторы</p>
     </div>
     <div class="encounterCreatorInput" id="abilities">
-        <p>Введите названия способностей</p>
+        <p>Выберите способности</p>
+        <select name="ability" multiple id="ability" class="js-example-basic-single">
+        <?php
+        foreach ($DBSelect->getAbilityNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $abilities)
+        foreach($abilities as $ability) {
+            ?>
+            <option value="<?= $ability ?>"> <?= $ability ?></option>
+            <?php
+        }
+        ?>
+        </select>
     </div>
     <div class="encounterCreatorInput" id="buff">
         <p>введите названия его баффов</p>
@@ -51,7 +66,8 @@ $renderer = new EncounterRenderer();
 
     <input type="button" value="Добавить существо." id="sendCreatureData">
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="../scripts/adminPanel.js"></script>
 <a href="../PHP/logout.php">Выйти</a>
 </body>
 </html>

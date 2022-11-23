@@ -1,6 +1,6 @@
 <?php
 include 'Component.php';
-include dirname(__DIR__) . '/const.php';
+include dirname(__DIR__, 2) . '/const.php';
 
 class DiceRenderer extends Component
 {

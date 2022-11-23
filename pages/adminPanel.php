@@ -1,4 +1,5 @@
 <?php
+include realpath('../assets/const.php');
 session_start();
 
 ?>
@@ -11,39 +12,60 @@ session_start();
     <script src="../scripts/includer.js"></script>
     <link rel="stylesheet" href="../styles/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div id="navBar"></div>
 
 <div id="creatorSettings">
-    <form action="adminPanel.php" method="get">
-        <h2>Настройки панели создания событий</h2>
-        <div class="inputAdminSettings">
-            <span class="statName">Название стата</span><br>
-            <input type="text" name="statName">
-        </div>
-        <div class="inputAdminSettings">
-            <span class="statMod">Количество для 1 модификатора</span><br>
-            <input type="text" name="statMod">
-        </div>
-        <button type="submit">Добавить</button>
-    </form>
+    <h2>Настройки панели создания событий</h2>
+    <div id="statSettings">
+        <h3>Настройка статов</h3>
+        <form action="../PHP/statSettings.php" method="get">
+            <div class="inputAdminSettings">
+                <span class="statName">Название стата</span><br>
+                <input type="text" name="statName">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="statMod">Количество для 1 модификатора</span><br>
+                <input type="text" name="statMod">
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+        <span><?=@$_SESSION['messageStat'] ?: ""; $_SESSION['messageStat'] = "";?></span>
+    </div>
+    <div id="abilities">
+        <h3>Настройка способностей</h3>
+        <form action="../PHP/abilitySettings.php" method="get">
+            <div class="inputAdminSettings">
+                <span class="abName">Название способности</span><br>
+                <input type="text" name="abName">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="abDescription">Описание способности</span><br>
+                <input type="text" name="abDescription">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="abDice">Выберите куб способности</span><br>
+                <select name="diceType" id="diceType" class="js-example-basic-single">
+                    <?php
+                    foreach (DICE_TYPES as $dice) {
+                        ?>
+                        <option value="<?= $dice ?>"> <?= $dice ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+        <span><?=@$_SESSION['messageAbility'] ?: ""; $_SESSION['messageAbility'] = "";?></span>
+    </div>
 </div>
 
 <a href="userPage.php">Назад</a>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="../scripts/adminPanel.js"></script>
 </body>
 </html>
-
-<?php
-require_once ('../PHP/connect.php');
-if (isset($_GET['statName']) && isset($_GET['statMod']) && isset($_SESSION['username'])) {
-    $login = $_SESSION['username'];
-    $statName = $_GET['statName'];
-    $statMod = $_GET['statMod'];
-    $query_tag = "SELECT id FROM users WHERE login = '$login'";
-    $tag_result = mysqli_query($connection, $query_tag) or die (mysqli_error($connection));
-    $result = mysqli_fetch_assoc($tag_result);
-    $id = $result['id'];
-    $connection->query("INSERT INTO statsettings (id, statName, statMod) VALUES ('$id', '$statName', '$statMod') ");
-}
