@@ -48,7 +48,7 @@ session_start();
             </div>
             <div class="inputAdminSettings">
                 <span class="abDice">Выберите куб способности</span><br>
-                <select name="diceType" id="diceType" class="js-example-basic-single">
+                <select name="diceType[]" id="diceType" class="js-example-basic-single" multiple>
                     <?php
                     foreach (DICE_TYPES as $dice) {
                         ?>

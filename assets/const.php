@@ -17,3 +17,28 @@ const ENCOUNTERGENERATORTEXTS = [
 ];
 
 const DICE_TYPES = ['1d2', '1d4', '1d6', '1d8', '1d10', '1d12', '1d20', '1d100',];
+
+const ENCOUNTER_DB_TOREADEBLETEXT = [
+    'name' => 'Имя',
+    'race' => 'Раса',
+    'type' => 'Тип',
+    'class' => 'Класс',
+    'lvl' => 'Уровень',
+    'aligment' => 'Мировоззрение',
+    'HP' => 'HP',
+    'AC' => 'AC',
+    'armor' => 'Броня',
+    'actions' => 'Действия',
+    'defenceActions' => 'Защитные действия/Уклонения',
+    'abilities' => 'Способности',
+    'buffs' => 'Баффы и дебаффы',
+    'areals' => 'Места обитания',
+    'loot' => 'Добыча',
+    'mods' => 'Модификаторы',
+];
+
+const ABILITY_DB_TO_REAL_TEXT = [
+    'name' => 'Название',
+    'description' => 'Описание',
+    'dice' => 'Кубы',
+];

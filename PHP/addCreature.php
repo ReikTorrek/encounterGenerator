@@ -1,7 +1,7 @@
 <?php
 require_once 'connect.php';
 session_start();
-var_dump(json_decode($_POST['addCreature']), $_SESSION['userId']);
+
 if (@$_POST['addCreature'] && @$_SESSION['userId']) {
     $creature = json_decode($_POST['addCreature']);
     $userId = $_SESSION['userId'];
@@ -9,8 +9,7 @@ if (@$_POST['addCreature'] && @$_SESSION['userId']) {
                 VALUES ('" . $creature->name . "', '" . $creature->race . "', '" . $creature->type . "',
                  '" . $creature->class . "', '" . $creature->lvl . "', '" . $creature->aligment . "',
                  '" . $creature->HP . "', '" . $creature->AC . "', '" . $creature->armor . "',
-                 '" . $creature->actions . "', '" . $creature->defenceActions . "', '" . $userId . "', '" . json_encode($creature->ability) . "')";
-    var_dump('asdasd ' . $query);
+                 '" . $creature->actions . "', '" . $creature->defenceActions . "', '" . $userId . "', '" . json_encode($creature->ability, JSON_UNESCAPED_UNICODE) . "')";
     mysqli_query($connection, $query);
 
 }

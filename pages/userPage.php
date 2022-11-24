@@ -26,8 +26,9 @@ $DBSelect = new DBSelect();
 <p>Привет, <?=$_SESSION['username'] ?></p>
 </div>
 <div id="adminPanel">
-    <a href="adminPanel.php">Панель настройки генератора</a>
-    <a href="#">Страница всех существ</a>
+    <a href="adminPanel.php">Панель настройки генератора</a> <br>
+    <a href="allCreatures.php">Страница всех существ</a> <br>
+    <a href="allAbilities.php">Страница всех способностей</a>
     <?php
     $result = mysqli_query($connection, "SHOW COLUMNS FROM encounter");
     $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'mods'];
@@ -37,7 +38,6 @@ $DBSelect = new DBSelect();
                 $renderer->renderItem($row['Field'], 'text');
         }
     }
-
     ?>
     <div class="encounterCreatorInput" id="mods">
         <p>Введите модификаторы</p>

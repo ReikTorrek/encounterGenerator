@@ -2,7 +2,8 @@
 
 abstract class DBComponent
 {
-    abstract function getUIdByLogin($login);
+    protected function getConnection() {
+        return mysqli_connect('localhost', 'root', '', 'encountergenerator');
+    }
 
-    abstract function getAbilityNameByUId($userId);
 }

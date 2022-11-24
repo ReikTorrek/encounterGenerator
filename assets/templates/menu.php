@@ -22,6 +22,11 @@ if (isset($_SESSION['username'])) {
         <li><a href="http://localhost/2022/encounterGenerator/pages/encounterGenerator.html">Генеартор событий</a></li>
         <li><a href="http://localhost/2022/encounterGenerator/pages/diceRoller.php">Кубомёт</a></li>
         <li><a href="<?=$link;  ?>"><?=$menuName; ?></a></li>
+        <?php
+        if (isset($_SESSION['username'])) {
+            echo '<li><a href="http://localhost/2022/encounterGenerator/pages/allCreatures.php">Мои существа</a></li>';
+        }
+        ?>
         <li><a href="http://localhost/2022/encounterGenerator/index.html">Домой</a></li>
     </ul>
 </div>

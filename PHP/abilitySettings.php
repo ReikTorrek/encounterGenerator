@@ -4,7 +4,9 @@ session_start();
 if (isset($_GET['abName']) && isset($_GET['abDescription']) && isset($_SESSION['username'])) {
     $diceType = '';
     if (isset($_GET['diceType'])) {
-        $diceType = $_GET['diceType'];
+        var_dump($_GET['diceType']);
+        $diceType = json_encode($_GET['diceType'], JSON_UNESCAPED_UNICODE);
+        var_dump($diceType);
     }
     $login = $_SESSION['username'];
     $abName = $_GET['abName'];
@@ -20,5 +22,5 @@ if (isset($_GET['abName']) && isset($_GET['abDescription']) && isset($_SESSION['
         $_SESSION['messageAbility'] = 'Что - то пошло не так...';
     }
 
-    header('Location: http://localhost/2022/encounterGenerator/pages/adminPanel.php');
+    //header('Location: http://localhost/2022/encounterGenerator/pages/adminPanel.php');
 }

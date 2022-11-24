@@ -1,0 +1,24 @@
+table.pattern-table{
+    width: 100%;
+    border-collapse:collapse;
+    border-spacing:0;
+    height: auto;
+    margin-bottom: 30px;
+}
+table.pattern-table,table.pattern-table td, table.pattern-table th {
+    border: 1px solid #595959; }
+table.pattern-table td,table.pattern-table th {
+    min-height:35px;padding: 3px;
+    width: 30px;
+    height: 35px; }
+table.pattern-table th {
+    background: #347c99;
+    color: #fff;
+    font-weight: normal; }
+
+
+
+#pattern-table {
+    margin-right: 10%;
+    padding-top: 10%;
+}
