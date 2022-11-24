@@ -27,6 +27,7 @@ $DBSelect = new DBSelect();
 </div>
 <div id="adminPanel">
     <a href="adminPanel.php">Панель настройки генератора</a>
+    <a href="#">Страница всех существ</a>
     <?php
     $result = mysqli_query($connection, "SHOW COLUMNS FROM encounter");
     $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'mods'];
