@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 11 2022 г., 01:46
+-- Время создания: Ноя 23 2022 г., 21:55
 -- Версия сервера: 10.4.20-MariaDB
 -- Версия PHP: 8.0.8
 
@@ -29,9 +29,20 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `abilities` (
   `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(1000) DEFAULT NULL
+  `description` varchar(1000) DEFAULT NULL,
+  `dice` varchar(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `abilities`
+--
+
+INSERT INTO `abilities` (`id`, `userId`, `name`, `description`, `dice`) VALUES
+(3, 2, 'Усиление', 'Увеличивает твою силу, что позволяет наносить дополнительный урон 1d4', '1d4'),
+(4, 2, 'Магчиеская стрела', 'Магическая стрела, наносящая 1д6 урона', '1d6'),
+(5, 2, 'Ослабление', 'Ослабляет врага, заставляя его наносить на 1д6 меньше урона.', '1d6');
 
 -- --------------------------------------------------------
 
@@ -89,7 +100,11 @@ CREATE TABLE `encounter` (
 --
 
 INSERT INTO `encounter` (`id`, `name`, `race`, `type`, `class`, `lvl`, `aligment`, `HP`, `AC`, `armor`, `actions`, `defenceActions`, `userId`, `abilities`, `areals`, `buffs`, `loot`, `mods`) VALUES
-(3, 'Болк', 'волк', 'зверь', '', '2', 'голодный', 12, 7, 0, 3, 1, 2, NULL, NULL, NULL, NULL, NULL);
+(3, 'Болк', 'волк', 'зверь', '', '2', 'голодный', 12, 7, 0, 3, 1, 2, NULL, NULL, NULL, NULL, NULL),
+(5, 'Орк Берсерк', 'орк', 'гуманойд', 'берсерк', '3', 'злой', 25, 5, 6, 2, 0, 2, 'Усиление', NULL, NULL, NULL, NULL),
+(6, 'Ката 1: Wind of love', 'чудовище', 'гуманойд', 'чудище', '999', 'нейтрал', 123123, 123123, 123123, 123123, 123123, 2, '\"u0423u0441u0438u043bu0435u043du0438u0435\"', NULL, NULL, NULL, NULL),
+(7, 'asd', 'asd', 'asd', '', '12', 'qwe', 123, 123, 123, 123, 123, 2, 'Array', NULL, NULL, NULL, NULL),
+(8, 'asd', 'asd', 'asd', 'asd', '12', 'asd', 123, 123, 123, 123, 123, 2, '[\"u0423u0441u0438u043bu0435u043du0438u0435\",\"u041cu0430u0433u0447u0438u0435u0441u043au0430u044f u0441u0442u0440u0435u043bu0430\"]', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -123,6 +138,7 @@ CREATE TABLE `mods` (
 
 CREATE TABLE `statsettings` (
   `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `statName` varchar(255) NOT NULL,
   `statMod` varchar(255) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -131,8 +147,12 @@ CREATE TABLE `statsettings` (
 -- Дамп данных таблицы `statsettings`
 --
 
-INSERT INTO `statsettings` (`id`, `statName`, `statMod`) VALUES
-(2, 'Сила', '10');
+INSERT INTO `statsettings` (`id`, `userId`, `statName`, `statMod`) VALUES
+(1, 2, 'Сила', '10'),
+(2, 2, 'Ловкость', '10'),
+(3, 2, 'Выносливость', '10'),
+(4, 2, 'Харизма', '10'),
+(5, 2, 'Интеллект', '10');
 
 -- --------------------------------------------------------
 
@@ -196,6 +216,12 @@ ALTER TABLE `mods`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `statsettings`
+--
+ALTER TABLE `statsettings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -209,13 +235,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `abilities`
 --
 ALTER TABLE `abilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `encounter`
 --
 ALTER TABLE `encounter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблицы `mods`
@@ -224,10 +250,16 @@ ALTER TABLE `mods`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT для таблицы `statsettings`
+--
+ALTER TABLE `statsettings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
