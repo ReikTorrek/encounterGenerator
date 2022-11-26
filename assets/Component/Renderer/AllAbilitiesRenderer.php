@@ -23,7 +23,7 @@ class AllAbilitiesRenderer
                     $testJson = json_decode($value);
                     if (json_last_error() === JSON_ERROR_NONE) {
                         $separator = ', ';
-                        $value = implode($separator, $value);
+                        $value = implode($separator, json_decode($value));
                     }
                 }
                 echo
