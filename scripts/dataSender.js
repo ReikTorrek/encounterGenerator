@@ -12,7 +12,9 @@ $(document).ready(function () {
             'armor' : $('input#armor').val(),
             'actions' : $('input#actions').val(),
             'defenceActions' : $('input#defenceActions').val(),
-            'ability' : $('select#ability').val()
+            'ability' : $('select#ability').val(),
+            'buff' : $('select#buff').val(),
+            'debuff' : $('select#debuff').val(),
     }
         console.log(JSON.stringify(data));
         $.ajax({

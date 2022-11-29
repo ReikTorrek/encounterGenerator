@@ -31,7 +31,7 @@ $DBSelect = new DBSelect();
     <a href="allAbilities.php">Страница всех способностей</a>
     <?php
     $result = mysqli_query($connection, "SHOW COLUMNS FROM encounter");
-    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'mods'];
+    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'mods', 'debuff'];
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             if (!in_array($row['Field'], $colsBlackList))
@@ -57,9 +57,29 @@ $DBSelect = new DBSelect();
     </div>
     <div class="encounterCreatorInput" id="buff">
         <p>введите названия его баффов</p>
+        <select name="buff" multiple id="buff" class="js-example-basic-single">
+            <?php
+            foreach ($DBSelect->getBuffNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $buffs)
+                foreach($buffs as $buff) {
+                    ?>
+                    <option value="<?= $buff ?>"> <?= $buff ?></option>
+                    <?php
+                }
+            ?>
+        </select>
     </div>
     <div class="encounterCreatorInput" id="debuff">
         <p>Введите названия его дебаффов</p>
+        <select name="debuff" multiple id="debuff" class="js-example-basic-single">
+            <?php
+            foreach ($DBSelect->getDebuffByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $debuffs)
+                foreach($debuffs as $debuff) {
+                    ?>
+                    <option value="<?= $debuff ?>"> <?= $debuff ?></option>
+                    <?php
+                }
+            ?>
+        </select>
     </div>
     <div class="encounterCreatorInput" id="loot">
         <p>Введите лут.</p>

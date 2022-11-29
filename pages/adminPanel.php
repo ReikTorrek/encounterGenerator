@@ -62,10 +62,38 @@ session_start();
         </form>
         <span><?=@$_SESSION['messageAbility'] ?: ""; $_SESSION['messageAbility'] = "";?></span>
     </div>
+    <div id="buffs">
+        <h3>Настройка Баффов и дебаффов</h3>
+        <form action="../PHP/buffSettings.php" method="get">
+            <div class="inputAdminSettings">
+                <span class="buffSettings">Название баффа/дебаффа</span><br>
+                <input type="text" name="buffName">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="buffDescription">Описание баффа/дебаффа</span><br>
+                <input type="text" name="buffDescription">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="isBuff">выбери, если это бафф</span><br>
+                <input type="radio" onMouseDown="this.isChecked=this.checked;"
+                       onClick="this.checked=!this.isChecked;" name="isBuff" value="<?= true ?>">
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+        <span><?=@$_SESSION['messageBuff'] ?: ""; $_SESSION['messageBuff'] = "";?></span>
+    </div>
 </div>
 
 <a href="userPage.php">Назад</a>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="../scripts/adminPanel.js"></script>
+<script language="JavaScript">
+    function uncheckAllRadio(name){
+        var obj = document.getElementsByName(name);
+        for(i=0; i
+            obj[i].checked = false;
+    }
+</script>
 </body>
 </html>
+

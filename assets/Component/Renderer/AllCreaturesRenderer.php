@@ -21,7 +21,9 @@ class AllCreaturesRenderer
 	            <tbody>
             ';
             foreach ($row as $key => $value) {
-                if ($key == 'abilities' && $value) {
+                if ($key == 'abilities' && $value
+                    || $key == 'buffs' && $value
+                    || $key == 'debuff' && $value) {
                     $separator = ', ';
                     $value = implode($separator, json_decode($value));
                 }

@@ -18,6 +18,18 @@ class DBSelect extends DBComponent
         return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
     }
 
+    public function getBuffNameByUId($userId) {
+        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=1";
+
+        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
+    }
+
+    public function getDebuffByUId($userId) {
+        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=0";
+
+        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
+    }
+
     public function getEncounterByUId($userId) {
         $sql = "SELECT * FROM encounter WHERE userId=" . $userId;
         $connection = parent::getConnection();

@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(#e1e1ff, pink);
+}
+
 table.pattern-table{
     width: 100%;
     border-collapse:collapse;
@@ -16,7 +20,13 @@ table.pattern-table th {
     color: #fff;
     font-weight: normal; }
 
+.pattern-table {
+    box-shadow: 10px 5px 5px red;
+}
 
+.pattern-table:hover {
+    box-shadow: 10px 5px 5px #6c0000;
+}
 
 #pattern-table {
     margin-right: 10%;
