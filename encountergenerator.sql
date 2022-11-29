@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 24 2022 г., 23:10
+-- Время создания: Ноя 29 2022 г., 22:50
 -- Версия сервера: 10.4.20-MariaDB
 -- Версия PHP: 8.0.8
 
@@ -43,7 +43,10 @@ INSERT INTO `abilities` (`id`, `userId`, `name`, `description`, `dice`) VALUES
 (3, 2, 'Усиление', 'Увеличивает твою силу, что позволяет наносить дополнительный урон 1d4', '1d4'),
 (4, 2, 'Магчиеская стрела', 'Магическая стрела, наносящая 1д6 урона', '1d6'),
 (5, 2, 'Ослабление', 'Ослабляет врага, заставляя его наносить на 1д6 меньше урона.', '1d6'),
-(6, 2, 'Таран', 'Таранит врага и наносит 1д10 урона', '1d10');
+(6, 2, 'Таран', 'Таранит врага и наносит 1д10 урона', '1d10'),
+(18, 2, 'Убить ГМА', 'Наносит ГМу урон всех кубов, коиторые существуют в этой механике', '[\"1d2\",\"1d4\",\"1d6\",\"1d8\",\"1d10\",\"1d12\",\"1d20\",\"1d100\"]'),
+(19, 2, 'qwe', 'qwe', '[\"1d4\"]'),
+(20, 2, 'Выпад', 'Если попадёшь - даш пизды. Но ты не попадёшь. Лох', '[\"1d20\"]');
 
 -- --------------------------------------------------------
 
@@ -65,9 +68,19 @@ CREATE TABLE `areals` (
 
 CREATE TABLE `buffs` (
   `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `isBuff` tinyint(1) NOT NULL,
   `description` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Дамп данных таблицы `buffs`
+--
+
+INSERT INTO `buffs` (`id`, `userId`, `name`, `isBuff`, `description`) VALUES
+(3, 2, 'Вдохновление фортуны', 1, 'На этой неделе фортуна улыбнулась вам! '),
+(4, 2, 'Ненависть Фортуны', 0, 'Фортуна вас ненавидит. Удачи! :)');
 
 -- --------------------------------------------------------
 
@@ -92,6 +105,7 @@ CREATE TABLE `encounter` (
   `abilities` varchar(255) DEFAULT NULL,
   `areals` varchar(255) DEFAULT NULL,
   `buffs` varchar(255) DEFAULT NULL,
+  `debuff` varchar(255) DEFAULT NULL,
   `loot` varchar(255) DEFAULT NULL,
   `mods` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -100,9 +114,9 @@ CREATE TABLE `encounter` (
 -- Дамп данных таблицы `encounter`
 --
 
-INSERT INTO `encounter` (`id`, `name`, `race`, `type`, `class`, `lvl`, `aligment`, `HP`, `AC`, `armor`, `actions`, `defenceActions`, `userId`, `abilities`, `areals`, `buffs`, `loot`, `mods`) VALUES
-(3, 'Болк', 'волк', 'зверь', '', '2', 'голодный', 12, 7, 0, 3, 1, 2, NULL, NULL, NULL, NULL, NULL),
-(12, 'asd', 'asd', 'asd', 'asd', '21', 'sda', 12, 12, 12, 12, 12, 2, '[\"Магчиеская стрела\",\"Таран\"]', NULL, NULL, NULL, NULL);
+INSERT INTO `encounter` (`id`, `name`, `race`, `type`, `class`, `lvl`, `aligment`, `HP`, `AC`, `armor`, `actions`, `defenceActions`, `userId`, `abilities`, `areals`, `buffs`, `debuff`, `loot`, `mods`) VALUES
+(3, 'Болк', 'волк', 'зверь', '', '2', 'голодный', 12, 7, 0, 3, 1, 2, NULL, NULL, NULL, NULL, NULL, NULL),
+(18, 'Нахесса', 'змеедева', 'гуманойд', 'капитан(алчный)', '15', 'алчное', 25, 0, 0, 2, 0, 2, '[\"Убить ГМА\"]', NULL, '[\"Вдохновление фортуны\"]', '[\"Ненависть Фортуны\"]', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -150,7 +164,9 @@ INSERT INTO `statsettings` (`id`, `userId`, `statName`, `statMod`) VALUES
 (2, 2, 'Ловкость', '10'),
 (3, 2, 'Выносливость', '10'),
 (4, 2, 'Харизма', '10'),
-(5, 2, 'Интеллект', '10');
+(5, 2, 'Интеллект', '10'),
+(6, 2, 'Кукумберство', '123'),
+(7, 2, 'Кук', '321');
 
 -- --------------------------------------------------------
 
@@ -233,13 +249,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `abilities`
 --
 ALTER TABLE `abilities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT для таблицы `buffs`
+--
+ALTER TABLE `buffs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `encounter`
 --
 ALTER TABLE `encounter`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT для таблицы `mods`
@@ -251,7 +273,7 @@ ALTER TABLE `mods`
 -- AUTO_INCREMENT для таблицы `statsettings`
 --
 ALTER TABLE `statsettings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
