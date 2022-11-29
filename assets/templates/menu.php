@@ -26,6 +26,9 @@ if (isset($_SESSION['username'])) {
         if (isset($_SESSION['username'])) {
             echo '<li><a href="http://localhost/2022/encounterGenerator/pages/allCreatures.php">Мои существа</a></li>';
         }
+        if (isset($_SESSION['username'])) {
+            echo '<li><a href="http://localhost/2022/encounterGenerator/pages/allAbilities.php">Мои способности</a></li>';
+        }
         ?>
         <li><a href="http://localhost/2022/encounterGenerator/index.html">Домой</a></li>
     </ul>

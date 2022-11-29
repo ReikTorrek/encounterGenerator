@@ -26,7 +26,7 @@ session_start();
         <input type="password" id="password" name="password">
     </div>
     <input type="submit" value="Войти">
-    <span> <?=$_SESSION['msgg'] ?> </span>
+    <span> <?=@$_SESSION['msgg'] ? $_SESSION['msgg'] : " " ?> </span>
 </form>
 <a href="registration.php"><button>Регистрация</button></a>
 </body>
