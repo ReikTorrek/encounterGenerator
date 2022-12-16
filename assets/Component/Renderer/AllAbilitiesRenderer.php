@@ -29,7 +29,7 @@ class AllAbilitiesRenderer
                 echo
                     '
                 <tr id="'. $key .'">
-                    <td>' . ABILITY_DB_TO_REAL_TEXT[$key] .'</td>
+                    <td class="tdFirstColumn">' . ABILITY_DB_TO_REAL_TEXT[$key] .'</td>
 			        <td>' . $value .'</td>
                 </tr>
                 ';
