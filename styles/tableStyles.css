@@ -1,5 +1,9 @@
 body {
-    background: linear-gradient(#e1e1ff, pink);
+    background-image: url("../assets/img/Backgrounds/EncounterBackground.jpg");
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: rgba(213, 213, 210, 0.5);
 }
 
 table.pattern-table{
@@ -8,27 +12,40 @@ table.pattern-table{
     border-spacing:0;
     height: auto;
     margin-bottom: 30px;
+    margin-left: 35px;
 }
 table.pattern-table,table.pattern-table td, table.pattern-table th {
-    border: 1px solid #595959; }
+    border: 2px solid #3b3b3b; }
 table.pattern-table td,table.pattern-table th {
     min-height:35px;padding: 3px;
-    width: 30px;
-    height: 35px; }
+    height: 35px;
+}
 table.pattern-table th {
     background: #347c99;
     color: #fff;
     font-weight: normal; }
 
 .pattern-table {
-    box-shadow: 10px 5px 5px red;
+    box-shadow: 10px 5px 5px #af0000;
 }
 
 .pattern-table:hover {
-    box-shadow: 10px 5px 5px #6c0000;
+    box-shadow: 10px 5px 5px #640101;
 }
 
 #pattern-table {
     margin-right: 10%;
     padding-top: 10%;
+}
+
+table.pattern-table td {
+    font-size: 3em;
+    text-align: center;
+    color: #262525;
+}
+
+td.tdFirstColumn {
+    width: 30%;
+    min-width: 30%;
+    max-width: 30%;
 }

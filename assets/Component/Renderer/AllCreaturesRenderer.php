@@ -30,7 +30,7 @@ class AllCreaturesRenderer
                 echo
                 '
                 <tr id="'. $key .'">
-                    <td>' . ENCOUNTER_DB_TOREADEBLETEXT[$key] .'</td>
+                    <td class="tdFirstColumn">' . ENCOUNTER_DB_TOREADEBLETEXT[$key] .'</td>
 			        <td>' . $value .'</td>
                 </tr>
                 ';
