@@ -40,7 +40,18 @@ $DBSelect = new DBSelect();
     }
     ?>
     <div class="encounterCreatorInput" id="mods">
-        <p>Введите модификаторы</p>
+        <p>Введите модификаторы (Оставьте ноль, если его быть не должно)</p>
+        <div class="mods">
+        </div>
+            <?php
+            foreach ($DBSelect->getStatNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $stats)
+                foreach($stats as $stat) {
+                    ?>
+                    <span> <?= $stat ?></span>
+                    <input type="number" id="<?= $stat ?>" value="0" placeholder="Введите значение модификатора"> <br>
+                    <?php
+                }
+            ?>
     </div>
     <div class="encounterCreatorInput" id="abilities">
         <p>Выберите способности</p>

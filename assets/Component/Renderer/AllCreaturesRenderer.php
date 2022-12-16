@@ -23,9 +23,18 @@ class AllCreaturesRenderer
             foreach ($row as $key => $value) {
                 if ($key == 'abilities' && $value
                     || $key == 'buffs' && $value
-                    || $key == 'debuff' && $value) {
+                    || $key == 'debuff' && $value
+                ) {
                     $separator = ', ';
-                    $value = implode($separator, json_decode($value));
+                    $value = implode($separator, (array) json_decode($value));
+                }
+                if ($key == 'mods' && $value) {
+                    $mods = (array) json_decode($value);
+                    $resultValue = '';
+                    foreach ($mods as $stat => $mod) {
+                        $resultValue .= $stat . ': ' . $mod . '; <br>';
+                    }
+                    $value = $resultValue;
                 }
                 echo
                 '
