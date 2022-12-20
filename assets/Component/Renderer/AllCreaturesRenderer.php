@@ -28,10 +28,10 @@ class AllCreaturesRenderer
                     $separator = ', ';
                     $value = implode($separator, (array) json_decode($value));
                 }
-                if ($key == 'mods' && $value) {
-                    $mods = (array) json_decode($value);
+                if ($key == 'stats' && $value) {
+                    $stats = (array) json_decode($value);
                     $resultValue = '';
-                    foreach ($mods as $stat => $mod) {
+                    foreach ($stats as $stat => $mod) {
                         $resultValue .= $stat . ': ' . $mod . '; <br>';
                     }
                     $value = $resultValue;

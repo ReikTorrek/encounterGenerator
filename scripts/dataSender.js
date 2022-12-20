@@ -1,19 +1,9 @@
 $(document).ready(function () {
-/*    console.log($('#mods').children('input').length);
-    let mods = $('#mods').children('input')
-    let modsLength = mods.length;
-    let stats = new Map();
-    for (let i = 0; i < modsLength; i ++) {
-        //console.log(mods[i].value);
-        stats.set(mods[i].id, mods[i].value);
-    }*/
-
     $('#sendCreatureData').click(function () {
-        let mods = $('#mods').children('input')
-        let modsLength = mods.length;
+        let mods = $('#stats').children('input')
+        let statsLength = mods.length;
         let stats = new Map();
-        for (let i = 0; i < modsLength; i ++) {
-            //console.log(mods[i].value);
+        for (let i = 0; i < statsLength; i ++) {
             stats.set(mods[i].id, mods[i].value);
         }
 
@@ -32,7 +22,7 @@ $(document).ready(function () {
             'ability' : $('select#ability').val(),
             'buff' : $('select#buff').val(),
             'debuff' : $('select#debuff').val(),
-            'mods' : JSON.stringify(Object.fromEntries(stats)),
+            'stats' : JSON.stringify(Object.fromEntries(stats)),
     }
         console.log(JSON.stringify(data));
         $.ajax({

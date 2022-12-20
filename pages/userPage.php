@@ -31,7 +31,7 @@ $DBSelect = new DBSelect();
     <a href="allAbilities.php">Страница всех способностей</a>
     <?php
     $result = mysqli_query($connection, "SHOW COLUMNS FROM encounter");
-    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'mods', 'debuff'];
+    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'stats', 'debuff'];
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             if (!in_array($row['Field'], $colsBlackList))
@@ -39,9 +39,9 @@ $DBSelect = new DBSelect();
         }
     }
     ?>
-    <div class="encounterCreatorInput" id="mods">
-        <p>Введите модификаторы (Оставьте ноль, если его быть не должно)</p>
-        <div class="mods">
+    <div class="encounterCreatorInput" id="stats">
+        <p>Введите статы (Оставьте ноль, если его быть не должно)</p>
+        <div class="stats">
         </div>
             <?php
             foreach ($DBSelect->getStatNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $stats)

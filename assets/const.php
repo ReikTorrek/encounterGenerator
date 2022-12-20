@@ -35,7 +35,7 @@ const ENCOUNTER_DB_TOREADEBLETEXT = [
     'debuff' => 'Дебаффы',
     'areals' => 'Места обитания',
     'loot' => 'Добыча',
-    'mods' => 'Модификаторы',
+    'stats' => 'Характеристики',
 ];
 
 const ABILITY_DB_TO_REAL_TEXT = [
