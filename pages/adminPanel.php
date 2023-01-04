@@ -82,6 +82,21 @@ session_start();
         </form>
         <span><?=@$_SESSION['messageBuff'] ?: ""; $_SESSION['messageBuff'] = "";?></span>
     </div>
+    <div id="lootSettings">
+        <h3>Добавление лута в базу данных</h3>
+        <form action="../PHP/lootSettings.php" method="get">
+            <div class="inputAdminSettings">
+                <span class="lootName">Название лута</span><br>
+                <input type="text" name="lootName">
+            </div>
+            <div class="inputAdminSettings">
+                <span class="lootDescription">Описание лута</span><br>
+                <input type="text" name="lootDescription">
+            </div>
+            <button type="submit">Добавить</button>
+        </form>
+        <span><?=@$_SESSION['messageLoot'] ?: ""; $_SESSION['messageLoot'] = "";?></span>
+    </div>
 </div>
 
 <a href="userPage.php">Назад</a>

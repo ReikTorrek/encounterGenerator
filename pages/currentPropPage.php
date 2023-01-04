@@ -22,6 +22,7 @@
 
     const PROP_TYPE_ABILITY = 'abilities';
     const PROP_TYPE_BUFFS = ['buffs', 'debuff'];
+    const PROP_TYPE_LOOT = 'loot';
 
     $emptyDescription = 'Nothing here';
     if (@$_GET['prop'] && @$_GET['propType']) {
@@ -31,6 +32,8 @@
             $props = $db->getAbilityByUId($db->getUIdByLogin($_SESSION['username']));
         } elseif (in_array($_GET['propType'], PROP_TYPE_BUFFS)) {
             $props = $db->getBuffsByUId($db->getUIdByLogin($_SESSION['username']));
+        } elseif ($_GET['propType'] == PROP_TYPE_LOOT) {
+            $props = $db->getLootByUId($db->getUIdByLogin($_SESSION['username']));
         }
         while ($prop =  mysqli_fetch_assoc($props)) {
             if ($prop['name'] == $_GET['prop']) {

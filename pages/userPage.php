@@ -94,8 +94,17 @@ $DBSelect = new DBSelect();
     </div>
     <div class="encounterCreatorInput" id="loot">
         <p>Введите лут.</p>
+        <select name="loot" multiple id="loot" class="js-example-basic-single">
+            <?php
+            foreach ($DBSelect->getLootNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $loots)
+                foreach($loots as $loot) {
+                    ?>
+                    <option value="<?= $loot ?>"> <?= $loot ?></option>
+                    <?php
+                }
+            ?>
+        </select>
     </div>
-
     <input type="button" value="Добавить существо." id="sendCreatureData">
 </div>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

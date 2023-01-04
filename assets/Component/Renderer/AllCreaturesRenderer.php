@@ -36,7 +36,9 @@ class AllCreaturesRenderer
                     <td>';
                     if ($key == 'abilities' && $value
                         || $key == 'buffs' && $value
-                        || $key == 'debuff' && $value) {
+                        || $key == 'debuff' && $value
+                        || $key == 'loot' && $value
+                    ) {
                         foreach (json_decode($value) as $item) {
                             echo '<a href="currentPropPage.php?prop=' . $item . '&propType=' . $key . ' " target="_blank">' . $item .'.</a> ';
                         }

@@ -22,6 +22,7 @@ $(document).ready(function () {
             'ability' : $('select#ability').val(),
             'buff' : $('select#buff').val(),
             'debuff' : $('select#debuff').val(),
+            'loot' : $('select#loot').val(),
             'stats' : JSON.stringify(Object.fromEntries(stats)),
     }
         console.log(JSON.stringify(data));

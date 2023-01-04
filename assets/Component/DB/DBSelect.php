@@ -18,6 +18,12 @@ class DBSelect extends DBComponent
         return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
     }
 
+    public function getLootNameByUId($userId) {
+        $sql = "SELECT name FROM loot WHERE userId=" . $userId;
+
+        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
+    }
+
     public function getStatNameByUId($userId) {
         $sql = "SELECT statName FROM statsettings WHERE userId=" . $userId;
 
@@ -38,6 +44,13 @@ class DBSelect extends DBComponent
 
     public function getBuffsByUId($userId) {
         $sql = "SELECT * FROM buffs WHERE userId = " . $userId;
+
+        $connection = parent::getConnection();
+        return $connection->query($sql);
+    }
+
+    public function getLootByUId($userId) {
+        $sql = "SELECT * FROM loot WHERE userId = " . $userId;
 
         $connection = parent::getConnection();
         return $connection->query($sql);
