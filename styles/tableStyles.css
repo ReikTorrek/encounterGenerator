@@ -28,10 +28,13 @@ table.pattern-table th {
 .pattern-table {
     box-shadow: 10px 5px 5px #af0000;
     background-color: rgba(255, 255, 255, 0.44);
+    transition: 0.1s linear;
 }
 
 .pattern-table:hover {
-    box-shadow: 10px 5px 5px #640101;
+    box-shadow: 10px 5px 5px #000000;
+    background-color: rgba(255, 255, 255, 0.65);
+    transform: scale(1.02);
 }
 
 #pattern-table {
@@ -43,6 +46,17 @@ table.pattern-table td {
     font-size: 3em;
     text-align: center;
     color: #262525;
+}
+
+table.pattern-table td a {
+    text-decoration: none;
+    color: #262525;
+    transition: 0.2s linear;
+}
+
+table.pattern-table td a:hover {
+    /*text-decoration: underline;*/
+    color: #ff0000;
 }
 
 td.tdFirstColumn {

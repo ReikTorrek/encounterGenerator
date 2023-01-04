@@ -21,13 +21,6 @@ class AllCreaturesRenderer
 	            <tbody>
             ';
             foreach ($row as $key => $value) {
-                if ($key == 'abilities' && $value
-                    || $key == 'buffs' && $value
-                    || $key == 'debuff' && $value
-                ) {
-                    $separator = ', ';
-                    $value = implode($separator, (array) json_decode($value));
-                }
                 if ($key == 'stats' && $value) {
                     $stats = (array) json_decode($value);
                     $resultValue = '';
@@ -40,8 +33,17 @@ class AllCreaturesRenderer
                 '
                 <tr id="'. $key .'">
                     <td class="tdFirstColumn">' . ENCOUNTER_DB_TOREADEBLETEXT[$key] .'</td>
-			        <td>' . $value .'</td>
-                </tr>
+                    <td>';
+                    if ($key == 'abilities' && $value
+                        || $key == 'buffs' && $value
+                        || $key == 'debuff' && $value) {
+                        foreach (json_decode($value) as $item) {
+                            echo '<a href="currentPropPage.php?prop=' . $item . '&propType=' . $key . ' " target="_blank">' . $item .'.</a> ';
+                        }
+                    } else {
+                        echo '<span>' . $value .'</span>';
+                    }
+                echo '</td></tr>
                 ';
             }
             echo
