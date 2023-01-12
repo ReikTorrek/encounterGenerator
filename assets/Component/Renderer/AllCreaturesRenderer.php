@@ -25,7 +25,7 @@ class AllCreaturesRenderer
                     $stats = (array) json_decode($value);
                     $resultValue = '';
                     foreach ($stats as $stat => $mod) {
-                        $resultValue .= $stat . ': ' . $mod . '; <br>';
+                        $resultValue .= $stat . ': ' . $mod . ' <br>';
                     }
                     $value = $resultValue;
                 }
@@ -33,7 +33,7 @@ class AllCreaturesRenderer
                 '
                 <tr id="'. $key .'">
                     <td class="tdFirstColumn">' . ENCOUNTER_DB_TOREADEBLETEXT[$key] .'</td>
-                    <td>';
+                    <td class="tdValue" id="' . $key .'">';
                     if ($key == 'abilities' && $value
                         || $key == 'buffs' && $value
                         || $key == 'debuff' && $value
