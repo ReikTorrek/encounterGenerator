@@ -5,6 +5,7 @@ require_once '../PHP/connect.php';
 session_start();
 $renderer = new EncounterRenderer();
 $DBSelect = new DBSelect();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +30,10 @@ $DBSelect = new DBSelect();
     <a href="adminPanel.php">Панель настройки генератора</a> <br>
     <a href="allCreatures.php">Страница всех существ</a> <br>
     <a href="allAbilities.php">Страница всех способностей</a>
+    <div id="gameId" hidden><?=$_SESSION['gameId']?></div>
     <?php
     $result = mysqli_query($connection, "SHOW COLUMNS FROM encounter");
-    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'stats', 'debuff'];
+    $colsBlackList = ['userId', 'id', 'abilities', 'areals', 'buffs', 'loot', 'stats', 'debuff', 'gameId'];
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             if (!in_array($row['Field'], $colsBlackList))
@@ -44,7 +46,7 @@ $DBSelect = new DBSelect();
         <div class="stats">
         </div>
             <?php
-            foreach ($DBSelect->getStatNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $stats)
+            foreach ($DBSelect->getStatNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $stats)
                 foreach($stats as $stat) {
                     ?>
                     <span> <?= $stat ?></span>
@@ -57,7 +59,7 @@ $DBSelect = new DBSelect();
         <p>Выберите способности</p>
         <select name="ability" multiple id="ability" class="js-example-basic-single">
         <?php
-        foreach ($DBSelect->getAbilityNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $abilities)
+        foreach ($DBSelect->getAbilityNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $abilities)
         foreach($abilities as $ability) {
             ?>
             <option value="<?= $ability ?>"> <?= $ability ?></option>
@@ -70,7 +72,7 @@ $DBSelect = new DBSelect();
         <p>введите названия его баффов</p>
         <select name="buff" multiple id="buff" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getBuffNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $buffs)
+            foreach ($DBSelect->getBuffNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $buffs)
                 foreach($buffs as $buff) {
                     ?>
                     <option value="<?= $buff ?>"> <?= $buff ?></option>
@@ -83,7 +85,7 @@ $DBSelect = new DBSelect();
         <p>Введите названия его дебаффов</p>
         <select name="debuff" multiple id="debuff" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getDebuffByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $debuffs)
+            foreach ($DBSelect->getDebuffByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $debuffs)
                 foreach($debuffs as $debuff) {
                     ?>
                     <option value="<?= $debuff ?>"> <?= $debuff ?></option>
@@ -96,7 +98,7 @@ $DBSelect = new DBSelect();
         <p>Введите лут.</p>
         <select name="loot" multiple id="loot" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getLootNameByUId($DBSelect->getUIdByLogin($_SESSION['username'])) as $loots)
+            foreach ($DBSelect->getLootNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $loots)
                 foreach($loots as $loot) {
                     ?>
                     <option value="<?= $loot ?>"> <?= $loot ?></option>

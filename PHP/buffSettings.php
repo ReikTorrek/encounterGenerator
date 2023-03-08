@@ -9,6 +9,7 @@ if (isset($_GET['buffName']) && isset($_GET['buffDescription']) && isset($_SESSI
         $isBuff = true;
     }
     $login = $_SESSION['username'];
+    $gameId = $_SESSION['gameId'];
     $buffName = $_GET['buffName'];
     $buffDescription = $_GET['buffDescription'];
     $query_tag = "SELECT id FROM users WHERE login = '$login'";
@@ -16,7 +17,7 @@ if (isset($_GET['buffName']) && isset($_GET['buffDescription']) && isset($_SESSI
     $result = mysqli_fetch_assoc($tag_result);
     $id = (int)$result['id'];
 
-    if ($connection->query("INSERT INTO buffs (userId, name, description, isBuff) VALUES (" . $id . ", '$buffName', '$buffDescription', '$isBuff')")) {
+    if ($connection->query("INSERT INTO buffs (userId, name, description, isBuff, gameId) VALUES (" . $id . ", '$buffName', '$buffDescription', '$isBuff', '$gameId')")) {
         $_SESSION['messageBuff'] = 'бафф/дебафф добавлен!';
     } else {
         $_SESSION['messageBuff'] = 'Что - то пошло не так...';

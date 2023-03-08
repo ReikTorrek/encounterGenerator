@@ -7,6 +7,7 @@ if (isset($_GET['abName']) && isset($_GET['abDescription']) && isset($_SESSION['
         $diceType = json_encode($_GET['diceType'], JSON_UNESCAPED_UNICODE);
     }
     $login = $_SESSION['username'];
+    $gameId = $_SESSION['gameId'];
     $abName = $_GET['abName'];
     $abDescription = $_GET['abDescription'];
     $query_tag = "SELECT id FROM users WHERE login = '$login'";
@@ -14,7 +15,7 @@ if (isset($_GET['abName']) && isset($_GET['abDescription']) && isset($_SESSION['
     $result = mysqli_fetch_assoc($tag_result);
     $id = (int) $result['id'];
 
-    if ($connection->query("INSERT INTO abilities (userId, name, description, dice) VALUES (" . $id . ", '$abName', '$abDescription', '$diceType')")) {
+    if ($connection->query("INSERT INTO abilities (userId, name, description, dice, gameId) VALUES (" . $id . ", '$abName', '$abDescription', '$diceType', '$gameId')")) {
         $_SESSION['messageAbility'] = 'Способность добавлена!';
     } else {
         $_SESSION['messageAbility'] = 'Что - то пошло не так...';

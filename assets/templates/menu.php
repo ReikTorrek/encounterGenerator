@@ -30,7 +30,8 @@ if (isset($_SESSION['username'])) {
             echo '<li><a href="http://localhost/2022/encounterGenerator/pages/allAbilities.php">Мои способности</a></li>';
         }
         ?>
-        <li><a href="http://localhost/2022/encounterGenerator/index.html">Домой</a></li>
+        <li><a href="http://localhost/2022/encounterGenerator/pages/main.php">Домой</a></li>
+        <li><a href="http://localhost/2022/encounterGenerator/index.php">К выбору ролевой</a></li>
     </ul>
 </div>
 <div class="landing_page">

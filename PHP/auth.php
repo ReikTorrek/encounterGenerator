@@ -13,7 +13,7 @@ if (isset($_POST['login']) && isset($_POST['password'])){
     if ($count == 1){
         $_SESSION['username'] = $username;
         $_SESSION['userId'] = $isAdmin['id'];
-        header('Location: http://localhost/2022/encounterGenerator/pages/userPage.php');
+        header('Location: http://localhost/2022/encounterGenerator/index.php');
     }
     else{
         $_SESSION['msgg'] = "Данные введены неверно.";

@@ -27,7 +27,7 @@
     <div class="dws-input">
         <button class="btn btn-success"  type ="submit" >Регистрация</button>
     </div>
-    <a href="../index.html">Отмена</a>
+    <a href="../index.php">Отмена</a>
 
     <p>
         <?php

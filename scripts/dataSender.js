@@ -24,8 +24,9 @@ $(document).ready(function () {
             'debuff' : $('select#debuff').val(),
             'loot' : $('select#loot').val(),
             'stats' : JSON.stringify(Object.fromEntries(stats)),
+            'gameId' : $('#gameId').text(),
     }
-        console.log(JSON.stringify(data));
+        console.log(data)
         $.ajax({
             method: 'POST',
             url: "http://localhost/2022/encounterGenerator/PHP/addCreature.php",

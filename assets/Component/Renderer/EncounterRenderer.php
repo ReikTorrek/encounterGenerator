@@ -1,6 +1,6 @@
 <?php
-include 'Component.php';
-include dirname(__DIR__, 2) . '/const.php';
+include_once 'Component.php';
+include_once dirname(__DIR__, 2) . '/const.php';
 
 class EncounterRenderer extends Component
 {

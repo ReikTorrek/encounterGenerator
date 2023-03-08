@@ -21,7 +21,7 @@ $renderer = new AllAbilitiesRenderer();
 <div id="navBar"></div>
 <div id="pattern-table">
     <?php
-    $renderer->renderItem($_SESSION['username']);
+    $renderer->renderItem($_SESSION['username'], $_SESSION['gameId']);
     ?>
 </div>
 </body>

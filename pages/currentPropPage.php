@@ -29,11 +29,11 @@
         $db = new DBSelect();
         $props = false;
         if ($_GET['propType'] == PROP_TYPE_ABILITY) {
-            $props = $db->getAbilityByUId($db->getUIdByLogin($_SESSION['username']));
+            $props = $db->getAbilityByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         } elseif (in_array($_GET['propType'], PROP_TYPE_BUFFS)) {
-            $props = $db->getBuffsByUId($db->getUIdByLogin($_SESSION['username']));
+            $props = $db->getBuffsByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         } elseif ($_GET['propType'] == PROP_TYPE_LOOT) {
-            $props = $db->getLootByUId($db->getUIdByLogin($_SESSION['username']));
+            $props = $db->getLootByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         }
         while ($prop =  mysqli_fetch_assoc($props)) {
             if ($prop['name'] == $_GET['prop']) {

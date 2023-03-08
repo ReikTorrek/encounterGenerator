@@ -12,73 +12,85 @@ class DBSelect extends DBComponent
         return mysqli_fetch_row(mysqli_query(parent::getConnection(), $sql))[0];
     }
 
-    public function getAbilityNameByUId($userId) {
-        $sql = "SELECT name FROM abilities WHERE userId=" . $userId;
+    public function getAbilityNameByUId($userId, $gameId = 0) {
+        $sql = "SELECT name FROM abilities WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
+        $result =  parent::getConnection()->query($sql)->fetch_all(MYSQLI_ASSOC);
+
+        return !empty($result) ? $result : [['Ничего не найдено']];
+    }
+
+    public function getLootNameByUId($userId, $gameId = 0) {
+        $sql = "SELECT name FROM loot WHERE userId=" . $userId  . " AND gameId = '" . $gameId . "'";
+        $result =  parent::getConnection()->query($sql)->fetch_all(MYSQLI_ASSOC);
+
+        return !empty($result) ? $result : [['Ничего не найдено']];
+    }
+
+    public function getStatNameByUId($userId, $gameId = 0) {
+        $sql = "SELECT statName FROM statsettings WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
 
         return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
     }
 
-    public function getLootNameByUId($userId) {
-        $sql = "SELECT name FROM loot WHERE userId=" . $userId;
+    public function getBuffNameByUId($userId, $gameId = 0) {
+        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=1" . " AND gameId = '" . $gameId . "'";
+        $result =  parent::getConnection()->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
+        return !empty($result) ? $result : [['Ничего не найдено']];
     }
 
-    public function getStatNameByUId($userId) {
-        $sql = "SELECT statName FROM statsettings WHERE userId=" . $userId;
+    public function getDebuffByUId($userId, $gameId = 0) {
+        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=0" . " AND gameId = '" . $gameId . "'";
+        $result =  parent::getConnection()->query($sql)->fetch_all(MYSQLI_ASSOC);
 
-        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
+        return !empty($result) ? $result : [['Ничего не найдено']];
     }
 
-    public function getBuffNameByUId($userId) {
-        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=1";
-
-        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
-    }
-
-    public function getDebuffByUId($userId) {
-        $sql = "SELECT name FROM buffs WHERE userId=" . $userId . " AND isBuff=0";
-
-        return mysqli_fetch_all(mysqli_query(parent::getConnection(), $sql));
-    }
-
-    public function getBuffsByUId($userId) {
-        $sql = "SELECT * FROM buffs WHERE userId = " . $userId;
+    public function getBuffsByUId($userId, $gameId = 0) {
+        $sql = "SELECT * FROM buffs WHERE userId = " . $userId . " AND gameId = '" . $gameId . "'";
 
         $connection = parent::getConnection();
         return $connection->query($sql);
     }
 
-    public function getLootByUId($userId) {
-        $sql = "SELECT * FROM loot WHERE userId = " . $userId;
+    public function getLootByUId($userId, $gameId = 0) {
+        $sql = "SELECT * FROM loot WHERE userId = " . $userId . " AND gameId = '" . $gameId . "'";
 
         $connection = parent::getConnection();
         return $connection->query($sql);
     }
 
-    public function getEncounterByUId($userId) {
-        $sql = "SELECT * FROM encounter WHERE userId=" . $userId;
+    public function getEncounterByUId($userId, $gameId = 0) {
+        $sql = "SELECT * FROM encounter WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
         $connection = parent::getConnection();
         return $connection->query($sql);
     }
 
-    public function getEncounterNum($userId) {
-        $sql = "SELECT COUNT(*) FROM encounter WHERE userId=" . $userId;
+    public function getEncounterNum($userId, $gameId = 0) {
+        $sql = "SELECT COUNT(*) FROM encounter WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
         $connection = parent::getConnection();
         $sqlResult = $connection->query($sql);
         return $sqlResult->fetch_row()[0];
     }
 
-    public function getAbilityByUId($userId) {
-        $sql = "SELECT * FROM abilities WHERE userId=" . $userId;
+    public function getAbilityByUId($userId, $gameId = 0) {
+        $sql = "SELECT * FROM abilities WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
         $connection = parent::getConnection();
         return $connection->query($sql);
     }
 
-    public function getAbilitiesNum($userId) {
-        $sql = "SELECT COUNT(*) FROM abilities WHERE userId=" . $userId;
+    public function getAbilitiesNum($userId, $gameId = 0) {
+        $sql = "SELECT COUNT(*) FROM abilities WHERE userId=" . $userId . " AND gameId = '" . $gameId . "'";
         $connection = parent::getConnection();
         $sqlResult = $connection->query($sql);
         return $sqlResult->fetch_row()[0];
+    }
+
+    public function getAllGamesByUid($userId) {
+        $sql = "SELECT * FROM roll_plays WHERE userId = " . $userId;
+
+        $connection = parent::getConnection();
+        $sqlResult = $connection->query($sql);
+        return $sqlResult->fetch_all(MYSQLI_ASSOC);
     }
 }

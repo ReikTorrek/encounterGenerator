@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{a7e9f794eb, includer, jQuery, select2, style}" />
+    <file url="PROJECT" libraries="{a7e9f794eb, bootstrap, includer, jQuery, select2, style}" />
   </component>
 </project>
