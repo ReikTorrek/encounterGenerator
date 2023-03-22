@@ -17,8 +17,8 @@
 <div id="pattern-table">
     <?php
     session_start();
-    include dirname(__DIR__) . '/assets/Component/DB/DBSelect.php';
-    include dirname(__DIR__) . '/assets/const.php';
+    include dirname(__DIR__) . '/assets/templates/autoload.php';
+    require_once dirname(__DIR__) . '/assets/const.php';
 
     const PROP_TYPE_ABILITY = 'abilities';
     const PROP_TYPE_BUFFS = ['buffs', 'debuff'];
@@ -26,14 +26,17 @@
 
     $emptyDescription = 'Nothing here';
     if (@$_GET['prop'] && @$_GET['propType']) {
-        $db = new DBSelect();
+        $abilitiesController = new AbilitiesController();
+        $buffsController = new BuffsController();
+        $lootController = new LootController();
+        $userController = new UserController();
         $props = false;
         if ($_GET['propType'] == PROP_TYPE_ABILITY) {
-            $props = $db->getAbilityByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
+            $props = $abilitiesController->getAbilityByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         } elseif (in_array($_GET['propType'], PROP_TYPE_BUFFS)) {
-            $props = $db->getBuffsByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
+            $props = $buffsController->getBuffsByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         } elseif ($_GET['propType'] == PROP_TYPE_LOOT) {
-            $props = $db->getLootByUId($db->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
+            $props = $lootController->getLootByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']);
         }
         while ($prop =  mysqli_fetch_assoc($props)) {
             if ($prop['name'] == $_GET['prop']) {

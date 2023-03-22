@@ -1,8 +1,8 @@
 <?php
 require_once dirname(__DIR__) . '/assets/templates/autoload.php';
 session_start();
-$dbController = new DBSelect();
-$userId = $dbController->getUIdByLogin($_SESSION['username']);
+$userController = new UserController();
+$userId = $userController->getUIdByLogin($_SESSION['username']);
 $sql = "INSERT INTO roll_plays (name, userId, pic, description) VALUES ('" . $_POST['name'] . "', '" . $userId . "', '" . addPicture() . "', '" . $_POST['description'] . "')";
 $connection->query($sql);
 header('location: http://localhost/2022/encounterGenerator/');

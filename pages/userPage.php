@@ -1,28 +1,22 @@
 <?php
 include '../assets/Component/Renderer/EncounterRenderer.php';
-include '../assets/Component/DB/DBSelect.php';
+require_once dirname(__DIR__) . '/assets/Component/DB/UserController.php';
+require_once dirname(__DIR__) . '/assets/Component/DB/StatController.php';
+require_once dirname(__DIR__) . '/assets/Component/DB/BuffsController.php';
+require_once dirname(__DIR__) . '/assets/Component/DB/LootController.php';
+require_once dirname(__DIR__) . '/assets/Component/DB/AbilitiesController.php';
 require_once '../PHP/connect.php';
 session_start();
 $renderer = new EncounterRenderer();
-$DBSelect = new DBSelect();
+$userController = new UserController();
+$statController = new StatController();
+$lootController = new LootController();
+$buffsController = new BuffsController();
+$abilitiesController = new AbilitiesController();
 
+include dirname(__DIR__) . '/assets/templates/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="../assets/src/jQuery.js"></script>
-    <script src="../scripts/includer.js"></script>
-    <script src="../scripts/dataSender.js"></script>
-    <link rel="stylesheet" href="../styles/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/a7e9f794eb.js" crossorigin="anonymous"></script>
-</head>
-<body>
-<div id="navBar"></div>
+
 <div id="userData">
 <p>Привет, <?=$_SESSION['username'] ?></p>
 </div>
@@ -46,7 +40,7 @@ $DBSelect = new DBSelect();
         <div class="stats">
         </div>
             <?php
-            foreach ($DBSelect->getStatNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $stats)
+            foreach ($statController->getStatNameByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $stats)
                 foreach($stats as $stat) {
                     ?>
                     <span> <?= $stat ?></span>
@@ -59,7 +53,7 @@ $DBSelect = new DBSelect();
         <p>Выберите способности</p>
         <select name="ability" multiple id="ability" class="js-example-basic-single">
         <?php
-        foreach ($DBSelect->getAbilityNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $abilities)
+        foreach ($abilitiesController->getAbilityNameByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $abilities)
         foreach($abilities as $ability) {
             ?>
             <option value="<?= $ability ?>"> <?= $ability ?></option>
@@ -72,7 +66,7 @@ $DBSelect = new DBSelect();
         <p>введите названия его баффов</p>
         <select name="buff" multiple id="buff" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getBuffNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $buffs)
+            foreach ($buffsController->getBuffNameByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $buffs)
                 foreach($buffs as $buff) {
                     ?>
                     <option value="<?= $buff ?>"> <?= $buff ?></option>
@@ -85,7 +79,7 @@ $DBSelect = new DBSelect();
         <p>Введите названия его дебаффов</p>
         <select name="debuff" multiple id="debuff" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getDebuffByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $debuffs)
+            foreach ($buffsController->getDebuffByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $debuffs)
                 foreach($debuffs as $debuff) {
                     ?>
                     <option value="<?= $debuff ?>"> <?= $debuff ?></option>
@@ -98,7 +92,7 @@ $DBSelect = new DBSelect();
         <p>Введите лут.</p>
         <select name="loot" multiple id="loot" class="js-example-basic-single">
             <?php
-            foreach ($DBSelect->getLootNameByUId($DBSelect->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $loots)
+            foreach ($lootController->getLootNameByUId($userController->getUIdByLogin($_SESSION['username']), $_SESSION['gameId']) as $loots)
                 foreach($loots as $loot) {
                     ?>
                     <option value="<?= $loot ?>"> <?= $loot ?></option>
@@ -109,8 +103,8 @@ $DBSelect = new DBSelect();
     </div>
     <input type="button" value="Добавить существо." id="sendCreatureData">
 </div>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="../scripts/adminPanel.js"></script>
+
 <a href="../PHP/logout.php">Выйти</a>
-</body>
-</html>
+
+<?php
+include dirname(__DIR__) . '/assets/templates/footer.php';

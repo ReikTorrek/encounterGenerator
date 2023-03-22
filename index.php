@@ -1,7 +1,8 @@
 <?php
 require_once 'assets/templates/autoload.php';
 session_start();
-$dbSelect = new DBSelect();
+$userController = new UserController();
+$gamesController = new GamesController();
 $gamesRenderer = new AllGamesRenderer();
 ?>
 <!DOCTYPE html>
@@ -26,8 +27,8 @@ if (isset($_SESSION['username'])) {
     if (isset($_SESSION['gameId'])) {
         echo '<div id="navBar"></div>';
     }
-    $userId = $dbSelect->getUIdByLogin($_SESSION['username']);
-    $games =  $dbSelect->getAllGamesByUid($userId);
+    $userId = $userController->getUIdByLogin($_SESSION['username']);
+    $games =  $gamesController->getAllGamesByUid($userId);
     $gamesRenderer->setPictureLink('assets/img/games/');
     $gamesRenderer->renderGames($games);
 } else {

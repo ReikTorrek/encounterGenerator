@@ -1,7 +1,9 @@
 <?php
 include dirname(__DIR__) . '/assets/Component/Renderer/AllCreaturesRenderer.php';
+require_once dirname(__DIR__) . '/assets/templates/autoload.php';
 session_start();
-$renderer = new AllCreaturesRenderer();
+$encounterController = new EncountersController();
+$renderer = new AllCreaturesRenderer($encounterController, new UserController());
 ?>
 
 <!DOCTYPE html>

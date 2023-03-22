@@ -1,17 +1,23 @@
 <?php
 include_once 'Component.php';
 include_once dirname(__DIR__, 2) . '/const.php';
-include_once dirname(__DIR__) . '/DB/DBSelect.php';
 
 class AllCreaturesRenderer
 {
 
+    private $encounterController;
+    private $userController;
+    public function __construct($encounterController, $userController)
+    {
+        $this->encounterController = $encounterController;
+        $this->userController = $userController;
+    }
+
     public function renderItem($login, $gameId)
     {
-        $DB = new DBSelect();
-        $userId = $DB->getUIdByLogin($login);
-        $encounterSql = $DB->getEncounterByUId($userId, $gameId);
-        $counter = $DB->getEncounterNum($userId, $gameId);
+        $userId = $this->userController->getUIdByLogin($login);
+        $encounterSql = $this->encounterController->getEncounterByUId($userId, $gameId);
+        $counter = $this->encounterController->getEncounterNum($userId, $gameId);
         for ($i = 0; $i < $counter; $i++) {
             $row = $encounterSql->fetch_assoc();
             unset($row['id'], $row['userId'], $row['gameId']);
