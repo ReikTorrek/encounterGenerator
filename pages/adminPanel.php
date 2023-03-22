@@ -1,5 +1,5 @@
 <?php
-include realpath('../assets/const.php');
+include dirname(__DIR__) . '/assets/templates/autoload.php';
 session_start();
 
 ?>

@@ -8,6 +8,7 @@
     <script src="<?= '/2022/encounterGenerator/assets/src/jQuery.js';  ?>"></script>
     <script src="<?= '/2022/encounterGenerator/scripts/includer.js'; ?>"></script>
     <script src="<?= '/2022/encounterGenerator/scripts/dataSender.js'; ?>"></script>
+    <script src="<?= '/2022/encounterGenerator/scripts/diceRoller.js'; ?>"></script>
     <link rel="stylesheet" href="<?= '/2022/encounterGenerator/styles/dicer.css' ?>">
     <link rel="stylesheet" href="<?= '/2022/encounterGenerator/styles/style.css' ?>">
     <link rel="stylesheet" href="<?= '/2022/encounterGenerator/styles/tableStyles.css' ?>">

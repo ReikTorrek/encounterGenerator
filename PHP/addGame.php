@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__) . '/assets/templates/autoload.php';
+require_once __DIR__ . '/connect.php';
 session_start();
 $userController = new UserController();
 $userId = $userController->getUIdByLogin($_SESSION['username']);

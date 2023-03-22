@@ -1,10 +1,5 @@
 <?php
-include '../assets/Component/Renderer/EncounterRenderer.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/UserController.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/StatController.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/BuffsController.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/LootController.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/AbilitiesController.php';
+require_once dirname(__DIR__) . '/assets/templates/autoload.php';
 require_once '../PHP/connect.php';
 session_start();
 $renderer = new EncounterRenderer();

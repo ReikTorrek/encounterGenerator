@@ -18,6 +18,7 @@ class AllCreaturesRenderer
         $userId = $this->userController->getUIdByLogin($login);
         $encounterSql = $this->encounterController->getEncounterByUId($userId, $gameId);
         $counter = $this->encounterController->getEncounterNum($userId, $gameId);
+        echo '<div id="pattern-table">';
         for ($i = 0; $i < $counter; $i++) {
             $row = $encounterSql->fetch_assoc();
             unset($row['id'], $row['userId'], $row['gameId']);
@@ -60,5 +61,6 @@ class AllCreaturesRenderer
             </table>
             ';
         }
+        echo '</div>';
     }
 }

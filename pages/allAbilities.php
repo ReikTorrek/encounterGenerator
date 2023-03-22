@@ -1,7 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/assets/Component/Renderer/AllAbilitiesRenderer.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/AbilitiesController.php';
-require_once dirname(__DIR__) . '/assets/Component/DB/UserController.php';
+require_once dirname(__DIR__) . '/assets/templates/autoload.php';
 session_start();
 $abilities = new AbilitiesController();
 $user = new UserController();
