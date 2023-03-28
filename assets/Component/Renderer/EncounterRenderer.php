@@ -5,7 +5,6 @@ include_once dirname(__DIR__, 2) . '/const.php';
 class EncounterRenderer
 {
 
-
     public function renderItem($itemId)
     {
         echo '
@@ -16,6 +15,5 @@ class EncounterRenderer
         ';
         // TODO: Implement renderItem() method.
     }
-
 
 }
