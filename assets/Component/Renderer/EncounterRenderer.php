@@ -2,11 +2,11 @@
 include_once 'Component.php';
 include_once dirname(__DIR__, 2) . '/const.php';
 
-class EncounterRenderer extends Component
+class EncounterRenderer
 {
 
 
-    public function renderItem($itemId, $itemType)
+    public function renderItem($itemId)
     {
         echo '
         <div class="encounterCreatorInput" id="' . $itemId . '">
