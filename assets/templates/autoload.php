@@ -14,5 +14,6 @@ require_once dirname(__DIR__) . '/Component/Renderer/AllGamesRenderer.php';
 require_once dirname(__DIR__) . '/Component/Renderer/DiceRenderer.php';
 require_once dirname(__DIR__) . '/Component/Renderer/EncounterRenderer.php';
 require_once dirname(__DIR__) . '/Component/Renderer/CurrentPropPageRenderer.php';
+require_once dirname(__DIR__) . '/Component/Renderer/GameRenderer.php';
 //Подключение констант
 require_once dirname(__DIR__) . '/const.php';

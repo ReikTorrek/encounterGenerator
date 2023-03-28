@@ -7,6 +7,7 @@ $(document).ready(function () {
         let diceId = event.target.id;
         let result = document.getElementById('result')
         let summ = document.getElementById('summ')
+        let diceCount = document.getElementById('counter')
         if (diceId === "") {
             return false
         } else if (diceId === "clear") {
@@ -14,15 +15,20 @@ $(document).ready(function () {
             resultSumm = 0
             result.innerText = "Cleared"
             summ.innerText = "Сумма: "
+            diceCount.value = 1
         } else {
             if (diceId === 'dicer') {
                 resultString += ""
             } else {
-                diceRes = rollDice(diceId);
-                resultSumm += parseInt(diceRes);
-                resultString += diceId + ": " + diceRes + " "
+                if (diceCount.value < 1) {
+                    diceCount.value = 1;
+                }
+                for (let i = 0; i < diceCount.value; i++) {
+                    diceRes = rollDice(diceId);
+                    resultSumm += parseInt(diceRes);
+                    resultString += diceId + ": " + diceRes + " "
+                }
             }
-            /*rollDice(diceId, diceRes).forEach(element => diceRes.push(element))*/
 
             result.innerText = resultString
             summ.innerText = "Сумма: " + resultSumm
@@ -33,10 +39,6 @@ $(document).ready(function () {
 function rollDice(id) {
     let re = /[1][d]/;
     let diceNum = id.replace(re, "");
-/*    let result = Array();
-    diceRes.forEach(element => result.push(element))
-    result.push(getRandomIntInclusive(1, diceNum))
-    console.log(result)*/
     return getRandomIntInclusive(1, diceNum)
 }
 
