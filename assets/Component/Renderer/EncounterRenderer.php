@@ -13,7 +13,6 @@ class EncounterRenderer
         <input type="text" name="' . $itemId . '" id="' . $itemId . '">
         </div>
         ';
-        // TODO: Implement renderItem() method.
     }
 
 }
